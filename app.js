@@ -177,3 +177,5 @@ app.listen(PORT, async () => {
     await sequelize.authenticate();
     console.log(`\n<><>< DB is UP! ><><>\n`);
 })
+
+module.exports = { redisClient };

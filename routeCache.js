@@ -1,9 +1,15 @@
 const { promisify } = require('util');
-const redis = require('redis');
-const redisClient = redis.createClient();
-redisClient.on('error', (err) => {
-  console.log('Redis error: ', err);
-});
+let { redisClient } = require('./app');
+
+if (process.env.REDIS_TLS_URL) {
+    redisClient = require('redis').createClient(process.env.REDIS_TLS_URL, {
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+} else {
+    redisClient = require('redis').createClient();
+}
 
 const getAsync = promisify(redisClient.get).bind(redisClient);
 const getLrangeAsync = promisify(redisClient.lrange).bind(redisClient);

@@ -16,15 +16,8 @@
   "production": {
     "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
-    "ssl": true,
-    "protocol": "postgres",
-    "logging": true,
-
     "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
+      "rejectUnauthorized": false
     }
   }
 }

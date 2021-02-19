@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const redis = require('redis');
-const redisStore = require('connect-redis')(session);
 let redisClient = redis.createClient();
 if (process.env.REDIS_URL) {
     redisClient = redis.createClient(process.env.REDIS_URL, {
@@ -24,8 +23,9 @@ if (process.env.REDIS_URL) {
     });
 }
 redisClient.on('error', (err) => {
-  console.log('Redis error: ', err);
+    console.log('Redis error: ', err);
 });
+const redisStore = require('connect-redis')(session);
 
 initializePassport(passport);
 

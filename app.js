@@ -13,15 +13,17 @@ const { initializePassport, authUser, notAuthUser } = require('./passport-config
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-const redis = require('redis');
-let redisClient = redis.createClient();
-if (process.env.REDIS_URL) {
-    redisClient = redis.createClient(process.env.REDIS_URL, {
+let redisClient;
+if (process.env.REDIS_TLS_URL) {
+    redisClient = require('redis').createClient(process.env.REDIS_TLS_URL, {
         tls: {
             rejectUnauthorized: false
         }
     });
+} else {
+    redisClient = require('redis').createClient();
 }
+
 redisClient.on('error', (err) => {
     console.log('Redis error: ', err);
 });

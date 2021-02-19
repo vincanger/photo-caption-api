@@ -14,8 +14,15 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const redis = require('redis');
-const redisStore = require('connect-redis')(session);	
-const redisClient = redis.createClient();
+const redisStore = require('connect-redis')(session);
+let redisClient = redis.createClient();
+if (process.env.REDIS_URL) {
+    redisClient = redis.createClient(process.env.REDIS_URL, {
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+}
 redisClient.on('error', (err) => {
   console.log('Redis error: ', err);
 });
@@ -26,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(session({
-    store: new redisStore(process.env.REDIS_URL || { host: 'localhost', port: 6379, client: redisClient }),
+    store: new redisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,

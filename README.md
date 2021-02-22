@@ -16,5 +16,5 @@ This was a learning project. My goals were to learn and implement:
 
 ## Preview
 
-<img src="https://github.com/vincanger/photo-caption-api/blob/master/photo-app-preview.gif" width="85%" height="85%" />
+<img src="https://github.com/vincanger/photo-caption-api/blob/master/photo-app-preview.gif" />
 

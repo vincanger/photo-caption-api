@@ -12,7 +12,7 @@ This was a learning project. My goals were to learn and implement:
 3. User sessions with Express/Passport :white_check_mark:
 4. Redis :white_check_mark:
 5. Configure Redis, Sequelize, and Postgres for successful deployment to Heroku :white_check_mark:
-    - https://photo-caption.herokuapp.com :thumbs_up:
+    - https://photo-caption.herokuapp.com :thumbsup:
 
 ## Preview
 

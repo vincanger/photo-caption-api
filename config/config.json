@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "vincecanger",
-    "password": "Socsk8215",
+    "password": null,
     "database": "photocaption_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
